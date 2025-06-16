@@ -27,17 +27,44 @@ class ProfileCard extends StatelessWidget {
               Text(
                 "Employee Profile",
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: 20,
                   color: Colors.black,
+                  fontWeight: FontWeight.bold,
                 ),
               )
             ],
           ),
-          SizedBox(
-                width: 50,
-                height: 50,
-                child: Icon(Icons.person,size: 50,),
+          Row(
+            children: [
+              SizedBox(
+                    width: 100,
+                    height: 100,
+                    child: Icon(Icons.person,size: 100,),
               ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: 200,
+                    height: 30,
+                    child: Text("John Doe"),
+                  ),
+                  SizedBox(
+                    width: 200,
+                    height: 30,
+                    child: Text("Electrical Engineer"),
+                  ),
+                  SizedBox(
+                    width: 200,
+                    height: 30,
+                    child: Text("John Doe"),
+                  ),
+              
+              
+                ],
+              )
+            ],
+          ),
         ],
       ),
     );

@@ -1,39 +1,39 @@
 import 'package:flutter/material.dart';
 
-class TransactionList extends StatelessWidget {
-  final List<Transaction> transactions = [
-    Transaction("Netflix", "June 10, 2023", -12.99, Icons.tv),
-    Transaction("Starbucks", "June 8, 2023", -5.45, Icons.coffee),
-    Transaction("Salary", "June 1, 2023", 2500.00, Icons.work),
-    Transaction("Amazon", "May 28, 2023", -89.99, Icons.shopping_bag),
-    Transaction("Transfer", "May 25, 2023", 500.00, Icons.swap_horiz),
+class TaskList extends StatelessWidget {
+  final List<Task> transactions = [
+    Task("Hydraulic Seal Replacement", "June 10, 2023", -12.99, Icons.gas_meter),
+    Task("Oil Change", "June 8, 2023", -5.45, Icons.oil_barrel),
+    Task("Test Bench Usage", "June 1, 2023", 2500.00, Icons.ad_units),
+    Task("Electrical Wiring", "May 28, 2023", -89.99, Icons.electric_bike),
+    Task("Valve Testing", "May 25, 2023", 500.00, Icons.swap_horiz),
   ];
 
-  TransactionList({super.key});
+  TaskList({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: transactions.map((transaction) {
-        return TransactionItem(transaction: transaction);
+      children: transactions.map((task) {
+        return TaskItem(assignment: task);
       }).toList(),
     );
   }
 }
 
-class Transaction {
+class Task {
   final String title;
   final String date;
   final double amount;
   final IconData icon;
 
-  Transaction(this.title, this.date, this.amount, this.icon);
+  Task(this.title, this.date, this.amount, this.icon);
 }
 
-class TransactionItem extends StatelessWidget {
-  final Transaction transaction;
+class TaskItem extends StatelessWidget {
+  final Task assignment;
 
-  const TransactionItem({super.key, required this.transaction});
+  const TaskItem({super.key, required this.assignment});
 
   @override
   Widget build(BuildContext context) {
@@ -57,14 +57,14 @@ class TransactionItem extends StatelessWidget {
             width: 50,
             height: 50,
             decoration: BoxDecoration(
-              color: transaction.amount > 0 
-                ? Colors.green.withOpacity(0.1)
-                : Colors.red.withOpacity(0.1),
+              color: assignment.amount > 0 
+                ? Colors.green.withValues(alpha: 0.1)
+                : Colors.red.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(15),
             ),
             child: Icon(
-              transaction.icon,
-              color: transaction.amount > 0 ? Colors.green : Colors.red,
+              assignment.icon,
+              color: assignment.amount > 0 ? Colors.green : Colors.red,
             ),
           ),
           SizedBox(width: 15),
@@ -73,7 +73,7 @@ class TransactionItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  transaction.title,
+                  assignment.title,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
@@ -81,9 +81,9 @@ class TransactionItem extends StatelessWidget {
                 ),
                 SizedBox(height: 5),
                 Text(
-                  transaction.date,
+                  assignment.date,
                   style: TextStyle(
-                    color: Colors.grey,
+                    color: Color.fromRGBO(41, 50, 65, 1),
                     fontSize: 12,
                   ),
                 ),
@@ -91,12 +91,12 @@ class TransactionItem extends StatelessWidget {
             ),
           ),
           Text(
-            transaction.amount > 0
-              ? "+${transaction.amount.toStringAsFixed(2)}"
-              : transaction.amount.toStringAsFixed(2),
+            assignment.amount > 0
+              ? "+${assignment.amount.toStringAsFixed(2)}"
+              : assignment.amount.toStringAsFixed(2),
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              color: transaction.amount > 0 ? Colors.green : Colors.red,
+              color: assignment.amount > 0 ? Colors.green : Colors.red,
               fontSize: 16,
             ),
           ),

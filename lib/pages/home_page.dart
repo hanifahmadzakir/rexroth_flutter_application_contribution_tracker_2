@@ -30,26 +30,34 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: Color.fromRGBO(61, 90, 128, 1),
+        centerTitle: true,
         title: Text('Contribution Tracker'),
+        titleTextStyle: TextStyle(
+          color: Colors.white,
+          fontSize: 20),
       ),
+      
 
       body: _pages[_selectedIndex],
       bottomNavigationBar: NavigationBar(
-        indicatorColor: Colors.blueGrey,
+        animationDuration: Duration(milliseconds: 500),
+        maintainBottomViewPadding: false,
+        backgroundColor: Color.fromRGBO(152, 193, 217, 1),
+        indicatorColor: Color.fromRGBO(238, 108, 77, 1),
         selectedIndex: _selectedIndex,
         onDestinationSelected: _navigateBottomBar,
         destinations: [
           NavigationDestination(
-            icon: Icon(Icons.dashboard,color: Colors.white,),
+            icon: Icon(Icons.dashboard,color: Colors.black,),
             label: 'Dashboard',
           ),
           NavigationDestination(
-            icon: Icon(Icons.timeline),
+            icon: Icon(Icons.timeline,color: Colors.black,),
             label: 'Tracker'
           ),
           NavigationDestination(
-            icon: Icon(Icons.history), 
+            icon: Icon(Icons.history,color: Colors.black,),
             label: 'History',
             ),
         ],
