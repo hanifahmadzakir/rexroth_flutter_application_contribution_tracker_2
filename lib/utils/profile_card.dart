@@ -37,10 +37,12 @@ class ProfileCard extends StatelessWidget {
           Row(
             children: [
               SizedBox(
-                    width: 100,
-                    height: 100,
-                    child: Icon(Icons.person,size: 100,),
+                    child: Image.asset('assets/image/profile.jpg',width: 80,
+                  height: 80,
+                  fit: BoxFit.cover,
+                  errorBuilder: (_, __, ___) => const Icon(Icons.person, size: 80),),
               ),
+              SizedBox(width: 10,),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -57,7 +59,7 @@ class ProfileCard extends StatelessWidget {
                   SizedBox(
                     width: 200,
                     height: 30,
-                    child: Text("John Doe"),
+                    child: Text("Employee ID: 12345"),
                   ),
               
               

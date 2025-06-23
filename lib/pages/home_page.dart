@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_contribution_tracker_2/pages/dashboard_page.dart';
+import 'package:flutter_application_contribution_tracker_2/pages/databasetrial_page.dart';
 import 'package:flutter_application_contribution_tracker_2/pages/history_page.dart';
 import 'package:flutter_application_contribution_tracker_2/pages/tracker_page.dart';
+import 'package:slide_to_confirm/slide_to_confirm.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -24,6 +26,7 @@ class _HomePageState extends State<HomePage> {
     DashboardPage(),
     TrackerPage(),
     HistoryPage(),
+    DatabaseTrialPage(),
   ];
 
   @override
@@ -37,6 +40,27 @@ class _HomePageState extends State<HomePage> {
           color: Colors.white,
           fontSize: 20),
       ),
+
+      floatingActionButton: FloatingActionButton(
+        onPressed: ()=>showDialog(
+          context: context, 
+          builder: (BuildContext context)=> AlertDialog(
+            title: const Text('Please Input Job/Assignment Title'),
+                    content: const TextField(),
+                    actions: <Widget>[
+                      ConfirmationSlider(
+                        onConfirmation: (){
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Task Added, Check-in confirmed!')),
+                          );
+                          Navigator.pop(context);
+                        }
+                        )
+                    ],
+          )),
+        backgroundColor: Colors.deepOrangeAccent,
+        child: const Icon(Icons.add,color: Colors.black,),
+        ),
       
 
       body: _pages[_selectedIndex],
@@ -59,6 +83,10 @@ class _HomePageState extends State<HomePage> {
           NavigationDestination(
             icon: Icon(Icons.history,color: Colors.black,),
             label: 'History',
+            ),
+          NavigationDestination(
+            icon: Icon(Icons.android),
+            label: 'Developer Tools',
             ),
         ],
       ),
